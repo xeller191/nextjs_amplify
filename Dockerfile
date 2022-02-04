@@ -2,7 +2,7 @@
 # Linux + Node + Source + Project dependencies
 FROM node:current-alpine as base
 WORKDIR /app
-COPY package.json ./
+COPY package*.json ./
 RUN npm install
 COPY . .
 

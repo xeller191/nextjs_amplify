@@ -2,13 +2,11 @@ import styled from "styled-components";
 import tw from "twin.macro";
 
 const Container = styled.h1`
-  ${tw`w-screen h-screen flex justify-center items-center bg-gray-100`}
+  ${tw`flex items-center justify-center w-screen h-screen bg-gray-100`}
 `;
 
 const FormContainer = styled.form`
-  ${tw`
-p-10 bg-white rounded flex justify-center items-center flex-col shadow-md
-  `}
+  ${tw`flex flex-col items-center justify-center p-10 bg-white rounded shadow-md `}
 `;
 
 
@@ -18,7 +16,7 @@ export default function Home() {
       <FormContainer>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="w-20 h-20 text-gray-600 mb-2"
+          className="w-20 h-20 mb-2 text-gray-600"
           viewBox="0 0 20 20"
           fill="currentColor"
         >
@@ -28,11 +26,11 @@ export default function Home() {
             clipRule="evenodd"
           />
         </svg>
-        <p className="mb-5 text-3xl uppercase text-gray-600">Login</p>
+        <p className="mb-5 text-3xl text-gray-600 uppercase">Login</p>
         <input
           type="email"
           name="email"
-          className="mb-5 p-3 w-80 focus:border-purple-700 rounded border-2 outline-none"
+          className="p-3 mb-5 border-2 rounded outline-none w-80 focus:border-purple-700"
           autoComplete="off"
           placeholder="Email"
           required
@@ -40,17 +38,17 @@ export default function Home() {
         <input
           type="password"
           name="password"
-          className="mb-5 p-3 w-80 focus:border-purple-700 rounded border-2 outline-none"
+          className="p-3 mb-5 border-2 rounded outline-none w-80 focus:border-purple-700"
           autoComplete="off"
           placeholder="Password"
           required
         />
         <button
-          className="bg-purple-600 hover:bg-purple-900 text-white font-bold p-2 rounded w-80"
+          className="p-2 font-bold text-white bg-purple-600 rounded hover:bg-purple-900 w-80"
           id="login"
           type="submit"
         >
-          <span>Login</span>
+          <span>Login2</span>
         </button>
       </FormContainer>
     </Container>
