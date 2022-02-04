@@ -1,6 +1,6 @@
 # Image Size: 221MB
 # Linux + Node + Source + Project dependencies
-FROM node:current-alpine as base
+FROM node:14.17.1-alpine3.13 AS builder
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
