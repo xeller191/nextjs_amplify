@@ -10,6 +10,7 @@ pipeline {
             steps {
                 //
                 sh 'echo STAGE01 Build'
+                git 'https://github.com/xeller191/nextjs_amplify.git'
             }
         }
         stage('Test') {
