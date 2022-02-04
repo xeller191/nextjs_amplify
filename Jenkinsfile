@@ -5,6 +5,8 @@ pipeline {
         stage('prepare') {
             steps {
                 echo 'prepare build'
+                sh 'echo STAGE01 Build'
+                git branch: 'main', url: 'https://github.com/xeller191/nextjs_amplify.git'
             }
         }
 
