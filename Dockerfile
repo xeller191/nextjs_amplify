@@ -3,7 +3,7 @@
 FROM node:current-alpine as base
 WORKDIR /app
 COPY package*.json ./
-RUN npm ci
+RUN npm install
 COPY . .
 
 # Linux + Node + Source + Project dependencies + build assets
