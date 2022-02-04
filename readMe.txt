@@ -39,11 +39,11 @@ ex.1 folder Dockerfile อยู่ที่ folderDocker
 $ docker build -t test-next-docker folderDocker
 
 ex.2 **เราใช้ foler doker อยู่ที่ root
-$ docker build -t dokcer123 .
+$ docker build -t dokcer1234 .
 
 -2.สร้าง Container จาก Image ข้อ1
 $ docker run -p 3000:3000 --name <Name_of_Docker> <NameOfImage or IDImage>
-ex.  docker run -p 3000:3000 --name Docker-Nextjs dokcer123
+ex.  docker run -p 3000:3000 --name Docker-Nextjs1 dokcer1234
  3000 ตัวแรก คือ port ที่มาจากเครื่องเรา
  3000 ตัว หลังคือ port ของ Docker ที่รัน
 
