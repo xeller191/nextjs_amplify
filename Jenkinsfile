@@ -1,32 +1,26 @@
 pipeline {
     agent any
-    environment {
-        IMAGE_NAME = 'NextJS'
-        CONTAINER_NAME = "${IMAGE_NAME}-CONTAINER"
-    }
 
     stages {
+        stage('prepare') {
+            steps {
+                echo 'prepare build'
+            }
+        }
+
         stage('Build') {
             steps {
-                //
-                sh 'echo STAGE01 Build'
-                git 'https://github.com/xeller191/nextjs_amplify.git'
+                echo 'Build step'
             }
         }
         stage('Test') {
             steps {
-                //
-                sh 'echo STAGE02 Test'
+                echo 'Testing..'
             }
         }
         stage('Deploy') {
             steps {
-                sh 'echo STAGE03 Deploy'
-                sh "docker stop ${CONTAINER_NAME} || true && docker rm ${CONTAINER_NAME} || true"
-                sh "docker rm -f ${IMAGE_NAME} || true"
-                sh "docker run \
-            --name ${IMAGE_NAME} \
-            ${CONTAINER_NAME}"
+                echo 'Deploy..'
             }
         }
     }
