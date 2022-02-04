@@ -20,7 +20,7 @@ pipeline {
             }
         }
         stage('Deploy') {
-            staps {
+            steps {
                 sh 'echo STAGE03 Deploy'
                 sh "docker stop ${CONTAINER_NAME} || true && docker rm ${CONTAINER_NAME} || true"
                 sh "docker rm -f ${IMAGE_NAME} || true"
