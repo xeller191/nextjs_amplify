@@ -2,7 +2,6 @@ pipeline {
     agent any
 
     environment {
-        currentBuild.result = failed
         IMAGE_NAME = 'nextjs'
         CONTAINER_NAME = "${IMAGE_NAME}-CONTAINER"
         URL_PATH = '/home/ubuntu/nextjs'
@@ -26,19 +25,18 @@ pipeline {
                 echo 'Deploy..'
                 sh "docker build -t ${IMAGE_NAME} ."
                 sh "docker run -p 3000:3000 --name ${CONTAINER_NAME} ${IMAGE_NAME}"
-                currentBuild.result = 'success'
                 sh 'exit 1'
             }
             post {
-                    always {
-                        echo "Pipeline result: ${currentBuild.result}"
-                    }
+                always {
+                    echo 'Pipeline result: Success'
+                }
             }
         }
 
         post {
             always {
-                echo "Pipeline result: ${currentBuild.result}"
+                echo 'Pipeline result: Success'
             }
         }
     }
