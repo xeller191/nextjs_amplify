@@ -30,15 +30,16 @@ pipeline {
             }
         }
 
-    post {
-        always {
-            deleteDir() // clean up our workspace
-        }
-        success {
-            echo 'This pipeline run successful.'
-        }
-        failure {
-            echo 'This pipeline is Fail.'
+        post {
+            always {
+                deleteDir() // clean up our workspace
+            }
+            success {
+                echo 'This pipeline run successful.'
+            }
+            failure {
+                echo 'This pipeline is Fail.'
+            }
         }
     }
 }
