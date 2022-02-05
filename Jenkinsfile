@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = 'NextJS'
+        IMAGE_NAME = 'nextjs'
         CONTAINER_NAME = "${IMAGE_NAME}-CONTAINER"
         URL_PATH = '/home/ubuntu/nextjs'
     }
