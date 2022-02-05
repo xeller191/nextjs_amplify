@@ -26,6 +26,7 @@ pipeline {
                 dir('/home/ubuntu/nextjs') {
                     sh 'pwd'
                 }
+                sh 'sudo chmod 775 /home/ubuntu/nextjs'
                 sh 'docker build -t nextjs01 .'
                 sh 'docker run -p 3000:3000 --name ct-nextjs01 nextjs01'
             }
