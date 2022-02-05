@@ -27,6 +27,12 @@ pipeline {
                 sh "docker run -p 3000:3000 --name ${CONTAINER_NAME} ${IMAGE_NAME}"
                 currentBuild.result = 'success'
                 sh 'exit 1'
+
+            }
+            post {
+                    always {
+                        echo "Pipeline result: ${currentBuild.result}"
+                    }
             }
         }
 
