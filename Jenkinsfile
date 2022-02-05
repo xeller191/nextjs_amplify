@@ -23,8 +23,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploy..'
-                sh "docker build -t ${IMAGE_NAME} ."
-                sh "docker run -p 3000:3000 --name ${CONTAINER_NAME} ${IMAGE_NAME} -d"
+                // sh "docker build -t ${IMAGE_NAME} ."
+                // sh "docker run -p 3000:3000 --name ${CONTAINER_NAME} ${IMAGE_NAME} -d"
                 sh 'exit 1'
             }
         }
