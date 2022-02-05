@@ -22,10 +22,12 @@ pipeline {
             }
         }
         stage('Deploy') {
-            steps {
+            try {
                 echo 'Deploy..'
                 sh "docker build -t ${IMAGE_NAME} ."
                 sh "docker run -p 3000:3000 --name ${CONTAINER_NAME} ${IMAGE_NAME}"
+            } catch (error) {
+                sh 'error'
             }
         }
     }
