@@ -17,12 +17,16 @@ pipeline {
             }
         }
         stage('BuildDocker') {
-            echo 'Deploy..'
-            sh "docker build -t ${IMAGE_NAME} ."
+            steps {
+                echo 'Deploy..'
+                sh "docker build -t ${IMAGE_NAME} ."
+            }
         }
         stage('Deploy') {
-            echo 'Run Docker of Images'
-            sh "docker run -d --rm -p 3000:3000 --name ${CONTAINER_NAME} ${IMAGE_NAME}"
+            steps {
+                echo 'Run Docker of Images'
+                sh "docker run -d --rm -p 3000:3000 --name ${CONTAINER_NAME} ${IMAGE_NAME}"
+            }
         }
     }
 
