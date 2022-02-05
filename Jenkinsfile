@@ -23,7 +23,9 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploy..'
-                sh 'cd /home/ubuntu/nextjs'
+                dir('/home/ubuntu/nextjs') {
+                    sh 'pwd'
+                }
                 sh 'docker build -t nextjs01 .'
                 sh 'docker run -p 3000:3000 --name ct-nextjs01 nextjs01'
             }
