@@ -8,7 +8,7 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
+        stage('RemoveOldImageAndDocker') {
             steps {
                 echo 'Build step'
                 echo 'Remove Old Docker and Image'
@@ -16,15 +16,17 @@ pipeline {
                 sh "docker rm -f ${IMAGE_NAME} || true"
             }
         }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
+        stage('BuildDocker') {
+            try {
+                echo 'Deploy..'
+                sh "docker build -t ${IMAGE_NAME} ."
+            } catch (error) {
+                sh 'error BuildDocker'
             }
         }
         stage('Deploy') {
             try {
-                echo 'Deploy..'
-                sh "docker build -t ${IMAGE_NAME} ."
+                echo 'Run Docker of Images'
                 sh "docker run -p 3000:3000 --name ${CONTAINER_NAME} ${IMAGE_NAME}"
             } catch (error) {
                 sh 'error'
