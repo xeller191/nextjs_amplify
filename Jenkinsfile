@@ -22,12 +22,20 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'Deploy..'
-                sh "docker build -t ${IMAGE_NAME} ."
-                sh "docker run -p 3000:3000 --name ${CONTAINER_NAME} ${IMAGE_NAME}"
+                script {
+                    try {
+                        echo 'Deploy..'
+                        sh "docker build -t ${IMAGE_NAME} ."
+                        sh "docker run -p 3000:3000 --name ${CONTAINER_NAME} ${IMAGE_NAME}"
+                            sh 'exit 1'
+                            currentBuild.result = 'SUCCESS'
+                        catch (Exception err) {
+                            currentBuild.result = 'FAILURE'
+                        }
+                    }
+                }
             }
         }
-    }
 
     post {
         always {
@@ -40,4 +48,4 @@ pipeline {
             echo 'This pipeline is Fail.'
         }
     }
-}
+    }
