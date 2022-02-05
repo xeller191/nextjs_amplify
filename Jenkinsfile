@@ -17,21 +17,13 @@ pipeline {
             }
         }
         stage('BuildDocker') {
-            try {
-                echo 'Deploy..'
-                sh "docker build -t ${IMAGE_NAME} ."
-            } catch (error) {
-                sh 'error BuildDocker'
-            }
+            echo 'Deploy..'
+            sh "docker build -t ${IMAGE_NAME} ."
         }
-        stage('Deploy') {
-            try {
-                echo 'Run Docker of Images'
-                sh "docker run -p 3000:3000 --name ${CONTAINER_NAME} ${IMAGE_NAME}"
-            } catch (error) {
-                sh 'error'
-            }
-        }
+        // stage('Deploy') {
+        //     echo 'Run Docker of Images'
+        //     sh "docker run -p 3000:3000 --name ${CONTAINER_NAME} ${IMAGE_NAME}"
+        // }
     }
 
     post {
