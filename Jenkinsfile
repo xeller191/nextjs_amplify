@@ -11,6 +11,8 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Build step'
+                sh "docker stop ${CONTAINER_NAME} || true && docker rm ${CONTAINER_NAME} || true"
+                sh "docker rm -f ${IMAGE_NAME} || true"
             }
         }
         stage('Test') {
