@@ -11,6 +11,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Build step'
+                echo 'Remove Old Docker and Image'
                 sh "docker stop ${CONTAINER_NAME} || true && docker rm ${CONTAINER_NAME} || true"
                 sh "docker rm -f ${IMAGE_NAME} || true"
             }
@@ -23,8 +24,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploy..'
-            // sh "docker build -t ${IMAGE_NAME} ."
-            // sh "docker run -p 3000:3000 --name ${CONTAINER_NAME} ${IMAGE_NAME} -d"
+                sh "docker build -t ${IMAGE_NAME} ."
+                sh "docker run -p 3000:3000 --name ${CONTAINER_NAME} ${IMAGE_NAME} -d"
             }
         }
     }
