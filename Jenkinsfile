@@ -23,9 +23,9 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploy..'
-                sh 'cd /var/lib/jenkins/workspace/TestBuildDocker'
-                sh 'docker build -t dokcer123 .'
-                sh 'docker run -p 3000:3000 --name Docker-Nextjs dokcer123'
+                sh 'cd /home/ubuntu/nextjs'
+                sh 'docker build -t nextjs01 .'
+                sh 'docker run -p 3000:3000 --name ct-nextjs01 nextjs01'
             }
         }
     }
