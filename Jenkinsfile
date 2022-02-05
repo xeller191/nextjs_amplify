@@ -23,15 +23,21 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploy..'
-                // sh "docker build -t ${IMAGE_NAME} ."
-                // sh "docker run -p 3000:3000 --name ${CONTAINER_NAME} ${IMAGE_NAME} -d"
-                sh 'exit 1'
+            // sh "docker build -t ${IMAGE_NAME} ."
+            // sh "docker run -p 3000:3000 --name ${CONTAINER_NAME} ${IMAGE_NAME} -d"
             }
         }
     }
+
     post {
         always {
-            echo 'Pipeline result: Success'
+            deleteDir() // clean up our workspace
+        }
+        success {
+            echo 'This pipeline run successful.'
+        }
+        failure {
+            echo 'This pipeline is Fail.'
         }
     }
 }
