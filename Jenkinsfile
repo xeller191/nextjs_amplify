@@ -2,6 +2,7 @@ pipeline {
     agent any
 
     environment {
+        currentBuild.result = failed
         IMAGE_NAME = 'nextjs'
         CONTAINER_NAME = "${IMAGE_NAME}-CONTAINER"
         URL_PATH = '/home/ubuntu/nextjs'
