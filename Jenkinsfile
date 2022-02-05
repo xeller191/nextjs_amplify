@@ -1,6 +1,12 @@
 pipeline {
     agent any
 
+    environment {
+        IMAGE_NAME = 'NextJS'
+        CONTAINER_NAME = "${IMAGE_NAME}-CONTAINER"
+        URL_PATH = '/home/ubuntu/nextjs'
+    }
+
     stages {
         stage('prepare') {
             steps {
@@ -13,6 +19,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Build step'
+                sh "sudo chmod 755 ${URL_PATH}"
             }
         }
         stage('Test') {
@@ -23,12 +30,11 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploy..'
-                dir('/home/ubuntu/nextjs') {
+                dir("${URL_PATH}") {
                     sh 'pwd'
                 }
-                sh 'sudo chmod 775 /home/ubuntu/nextjs'
-                sh 'docker build -t nextjs01 .'
-                sh 'docker run -p 3000:3000 --name ct-nextjs01 nextjs01'
+                sh "docker build -t ${IMAGE_NAME} ."
+                sh "docker run -p 3000:3000 --name ${CONTAINER_NAME} ${IMAGE_NAME}"
             }
         }
     }
