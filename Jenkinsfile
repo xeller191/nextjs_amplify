@@ -25,7 +25,7 @@ pipeline {
                 echo 'Deploy..'
                 sh "docker build -t ${IMAGE_NAME} ."
                 sh "docker run -p 3000:3000 --name ${CONTAINER_NAME} ${IMAGE_NAME}"
-                currentBuild.result = 'SUCCESS'
+                currentBuild.result = 'success'
                 sh 'exit 1'
             }
         }
