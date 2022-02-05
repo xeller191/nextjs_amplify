@@ -29,12 +29,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploy..'
-                dir("${URL_PATH}") {
-                    sh 'pwd'
-                    sh 'sudo chown -R jenkins:jenkins /var/lib/jenkins/'
-                    sh "docker build -t ${IMAGE_NAME} ."
-                    sh "docker run -p 3000:3000 --name ${CONTAINER_NAME} ${IMAGE_NAME}"
-                }
+                sh "docker build -t ${IMAGE_NAME} ."
+                sh "docker run -p 3000:3000 --name ${CONTAINER_NAME} ${IMAGE_NAME}"
             }
         }
     }
