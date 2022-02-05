@@ -19,7 +19,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Build step'
-                sh "sudo chmod 755 ${URL_PATH}"
+                sh "chmod 755 ${URL_PATH}"
             }
         }
         stage('Test') {
