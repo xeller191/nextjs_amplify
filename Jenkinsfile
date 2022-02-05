@@ -33,10 +33,10 @@ pipeline {
                 }
             }
         }
-        post {
-            always {
-                echo 'Pipeline result: Success'
-            }
+    }
+    post {
+        always {
+            echo 'Pipeline result: Success'
         }
     }
 }
