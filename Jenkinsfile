@@ -32,13 +32,7 @@ pipeline {
 
         post {
             always {
-                deleteDir() // clean up our workspace
-            }
-            success {
-                echo 'This pipeline run successful.'
-            }
-            failure {
-                echo 'This pipeline is Fail.'
+                echo "Pipeline result: ${currentBuild.result}"
             }
         }
     }
