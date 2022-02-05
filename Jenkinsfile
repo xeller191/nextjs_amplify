@@ -19,7 +19,6 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Build step'
-                sh "chmod 755 ${URL_PATH}"
             }
         }
         stage('Test') {
@@ -32,9 +31,9 @@ pipeline {
                 echo 'Deploy..'
                 dir("${URL_PATH}") {
                     sh 'pwd'
+                    sh "docker build -t ${IMAGE_NAME} ."
+                    sh "docker run -p 3000:3000 --name ${CONTAINER_NAME} ${IMAGE_NAME}"
                 }
-                sh "docker build -t ${IMAGE_NAME} ."
-                sh "docker run -p 3000:3000 --name ${CONTAINER_NAME} ${IMAGE_NAME}"
             }
         }
     }
